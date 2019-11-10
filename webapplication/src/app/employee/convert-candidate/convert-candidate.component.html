@@ -1,0 +1,36 @@
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }" [nzMaskClosable]="false"
+  [nzWidth]="320" [nzVisible]="visible" nzTitle="Actualizar" (nzOnClose)="close()">
+
+  <form nz-form>
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Salario mensual</nz-form-label>
+          <nz-form-control>
+            <input #mothlySalary nz-input type="number">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Correo electronico</nz-form-label>
+          <nz-form-control>
+            <input #email nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+
+  <div class="footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;">
+      <span>Cancelar</span>
+    </button>
+    <button type="button" (click)="updateCompetition(mothlySalary.value, email.value)" class="ant-btn ant-btn-primary">
+      <span>Enviar</span>
+    </button>
+  </div>
+</nz-drawer>

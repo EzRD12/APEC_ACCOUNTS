@@ -1,0 +1,68 @@
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }" [nzMaskClosable]="false"
+  [nzWidth]="720" [nzVisible]="visible" nzTitle="Actualizar" (nzOnClose)="close()">
+  <form nz-form>
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Empresa</nz-form-label>
+          <nz-form-control>
+            <input #company nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Posicion ocupada</nz-form-label>
+          <nz-form-control>
+            <input #occupiedPosition nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Salario</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="number" [(ngModel)]=salary name="salary">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha inicial</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker [(ngModel)]=dateFrom name="dateFrom"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha final</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker [(ngModel)]=dateTo name="dateTo"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+
+  <div class="footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;">
+      <span>Cancelar</span>
+    </button>
+    <button type="button" (click)="updateWorkExperience(company.value, occupiedPosition.value)" class="ant-btn ant-btn-primary">
+      <span>Enviar</span>
+    </button>
+  </div>
+</nz-drawer>

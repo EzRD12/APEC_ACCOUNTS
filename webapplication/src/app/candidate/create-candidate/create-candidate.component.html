@@ -1,0 +1,129 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Cedula</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="identification" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('identification').dirty && validateForm.get('identification').errors || validateForm.get('identification').pending ">
+        <ng-container *ngIf="validateForm.get('identification').hasError('required')">
+          Por favor, escriba la cedula
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('identification').hasError('duplicated')">
+          La cedula es redundante
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('identification').pending">
+          Validando...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Nombre</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="name" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors || validateForm.get('name').pending ">
+        <ng-container *ngIf="validateForm.get('name').hasError('required')">
+          Por favor, escriba el nombre
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('name').hasError('duplicated')">
+          El name es redundante
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('name').pending">
+          Validando...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="status" nz-row>
+    <nz-dropdown>
+      <a nz-dropdown>
+        Puesto al que aspira
+        <i class="anticon anticon-down"></i>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let position of displayPositions" (click)=onSelectPosition(position)>
+          <a>{{position}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Departamento</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="department" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('department').dirty && validateForm.get('department').errors || validateForm.get('department').pending ">
+        <ng-container *ngIf="validateForm.get('department').hasError('required')">
+          Por favor, escriba del departamento
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('department').hasError('duplicated')">
+          El departamento es redundante
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('department').pending">
+          Validando...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Salario al que aspira</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input type="number" formControlName="salary" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('salary').dirty && validateForm.get('salary').errors || validateForm.get('department').pending ">
+        <ng-container *ngIf="validateForm.get('salary').hasError('required')">
+          Por favor, escriba del departamento
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="status" nz-row>
+    <nz-dropdown>
+      <a nz-dropdown>
+        Principales capacitaciones
+        <i class="anticon anticon-down"></i>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let training of displayTrainings" (click)=onSelectTraining(training)>
+          <a>{{training}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-form-item>
+
+  <nz-form-item class="status" nz-row>
+    <nz-dropdown>
+      <a nz-dropdown>
+        Principales competencias
+        <i class="anticon anticon-down"></i>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let competition of displayCompetitions" (click)=onSelectCompetition(competition)>
+          <a>{{competition}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Recomendado por</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="recommendBy" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('recommendBy').dirty && validateForm.get('recommendBy').errors || validateForm.get('recommendBy').pending ">
+        <ng-container *ngIf="validateForm.get('recommendBy').hasError('required')">
+          Por favor, escriba del departamento
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      <button nz-button (click)="resetForm($event)">Reset</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

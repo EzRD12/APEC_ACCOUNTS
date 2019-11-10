@@ -1,0 +1,64 @@
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="saveForm()">
+  <nz-form-item>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="debitDescription" placeholder="Descripcion de entrada debito">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <nz-form-control>
+        <input type="text" nz-input formControlName="creditDescription" placeholder="Descripcion de entrada credito">
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="debitAccount" placeholder="Cuenta debito">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <nz-form-control>
+        <input type="text" nz-input formControlName="creditAccount" placeholder="Cuenta credito">
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="amount" placeholder="Monto">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-month-picker nzSize="default" formControlName="period" nzPlaceHolder="Periodo"></nz-month-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-select nzShowSearch nzAllowClear formControlName="debitAuxiliaryAccountId" nzPlaceHolder="Cuenta debito auxiliar"
+        style="width: 150px">
+        <nz-option *ngFor="let data of auxiliaryAccounts" nzCustomContent [nzLabel]="data.description"
+          [nzValue]="data.id">
+          {{data.description}}
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <nz-form-control>
+        <nz-select nzShowSearch nzAllowClear formControlName="creditAuxiliaryAccountId" nzPlaceHolder="Cuenta credito auxiliar"
+          style="width: 150px">
+          <nz-option *ngFor="let data of auxiliaryAccounts" nzCustomContent [nzLabel]="data.description"
+            [nzValue]="data.id">
+            {{data.description}}
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-select nzShowSearch nzAllowClear formControlName="currencyTypeId" nzPlaceHolder="Tipo de moneda"
+        style="width: 150px">
+        <nz-option *ngFor="let data of currencyTypes" nzCustomContent [nzLabel]="data.description" [nzValue]="data.id">
+          {{data.description}}
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>

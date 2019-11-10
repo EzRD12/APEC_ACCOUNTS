@@ -1,0 +1,34 @@
+<app-work-experience-update-drawer #drawer></app-work-experience-update-drawer>
+<nz-table #basicTable [nzData]="displayData">
+  <thead>
+    <tr>
+      <th>Empresa
+        <nz-dropdown nzTrigger="click" [nzClickHide]="false">
+          <i class="anticon anticon-smile-o ant-table-filter-icon" nz-dropdown></i>
+          <div class="custom-filter-dropdown">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
+            <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
+          </div>
+        </nz-dropdown>
+      </th>
+      <th>Posicion ocupada</th>
+      <th>Fecha inicial</th>
+      <th>Fecha final</th>
+      <th>Salario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.company}}</td>
+      <td>{{data.occupiedPosition}}</td>
+      <td>{{data.dateFrom}}</td>
+      <td>{{data.dateTo}}</td>
+      <td>{{data.salary}}
+        <nz-divider nzType="vertical"></nz-divider>
+        <a style="color: blue; margin-left:20px;" (click)="drawer.open(data.id)">Actualizar</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a style="color: blue; margin-left:20px;" (click)="onDelete(data.company, data.occupiedPosition)">Borrar</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

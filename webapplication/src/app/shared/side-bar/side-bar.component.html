@@ -1,0 +1,60 @@
+<div>
+  <ul nz-menu [nzMode]="'inline'" nzTheme='dark'>
+    <li nz-submenu [hidden]="!isLoged">
+      <span title>
+        <i class="anticon anticon-setting"></i>Competencias</span>
+      <ul>
+        <li nz-menu-item routerLink="./competition/create">Crear</li>
+        <li nz-menu-item routerLink="./competition/show">Mostrar</li>
+      </ul>
+    </li>
+    <li nz-submenu [hidden]="!isLoged">
+      <span title>
+        <i class="anticon anticon-message"></i>Idiomas</span>
+      <ul>
+        <li nz-menu-item routerLink="./language/create">Crear</li>
+        <li nz-menu-item routerLink="./language/show">Mostrar</li>
+      </ul>
+    </li>
+    <li nz-submenu [hidden]="!isLoged">
+      <span title>
+        <i class="anticon anticon-compass"></i>Capacitaciones</span>
+      <ul>
+        <li nz-menu-item routerLink="./training/create">Crear</li>
+        <li nz-menu-item routerLink="./training/show">Mostrar</li>
+      </ul>
+    </li>
+    <li nz-submenu [hidden]="!isLoged">
+      <span title>
+        <i class="anticon anticon-coffee"></i>Puestos</span>
+      <ul>
+        <li nz-menu-item routerLink="./position/create">Crear</li>
+        <li nz-menu-item routerLink="./position/show">Mostrar</li>
+      </ul>
+    </li>
+    <li nz-menu-item [hidden]="!isLoged" routerLink="./evaluation">
+      <span title>
+        <i class="anticon anticon-user"></i>Nuevo empleado</span>
+    </li>
+    <li nz-menu-item [hidden]="!isLoged" routerLink="./report">
+      <span title>
+        <i class="anticon anticon-user"></i>Reporte empleados</span>
+    </li>
+    <li nz-submenu [hidden]="isLoged">
+      <span title>
+        <i class="anticon anticon-user"></i>Candidatos</span>
+      <ul>
+        <li nz-menu-item routerLink="./candidate/create">Crear</li>
+
+        <li nz-submenu [hidden]="isLoged">
+          <span title>Experiencia laboral</span>
+          <ul>
+            <li nz-menu-item routerLink="./work-experience/create">Crear</li>
+            <li nz-menu-item routerLink="./work-experience/show">Mostrar</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <button class="log-out-button" nz-button nzType="primary" (click)="onSubmit()">Cerrar sesion</button>
+</div>

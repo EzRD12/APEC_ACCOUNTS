@@ -1,0 +1,87 @@
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }" [nzMaskClosable]="false"
+  [nzWidth]="720" [nzVisible]="visible" nzTitle="Actualizar" (nzOnClose)="close()">
+  <form nz-form>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Nombre</nz-form-label>
+          <nz-form-control>
+            <input #nombre nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired>Salario minimo</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input type="number" nz-input [(ngModel)]=minimumSalary name="minimumSalary">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired>Salario maximo</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input type="number" nz-input [(ngModel)]=maximumSalary name="maximumSalary">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-dropdown>
+              <a nz-dropdown>
+                Nivel de riesgo
+                <i class="anticon anticon-down"></i>
+              </a>
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item *ngFor="let riskLevel of riskLevels" (click)=onSelectRiskLevel(riskLevel)>
+                  <a>{{riskLevel}}</a>
+                </li>
+              </ul>
+            </nz-dropdown>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-dropdown>
+              <a nz-dropdown>
+                Estado
+                <i class="anticon anticon-down"></i>
+              </a>
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item *ngFor="let state of status" (click)=onSelectStatus(state)>
+                  <a>{{state}}</a>
+                </li>
+              </ul>
+            </nz-dropdown>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+
+  <div class="footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;">
+      <span>Cancelar</span>
+    </button>
+    <button type="button" (click)="updateCompetition(nombre.value)" class="ant-btn ant-btn-primary">
+      <span>Enviar</span>
+    </button>
+  </div>
+</nz-drawer>

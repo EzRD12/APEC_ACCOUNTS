@@ -1,0 +1,78 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Descripción</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="userName" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors || validateForm.get('userName').pending ">
+        <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+          Por favor, escriba la descripción
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('userName').hasError('duplicated')">
+          La descripción es redundante
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('userName').pending">
+          Validando...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Institucion</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="institution" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('institution').dirty && validateForm.get('institution').errors || validateForm.get('institution').pending ">
+        <ng-container *ngIf="validateForm.get('institution').hasError('required')">
+          Por favor, escriba la descripción
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('institution').hasError('duplicated')">
+          La descripción es redundante
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('institution').pending">
+          Validando...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha inicial</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-date-picker formControlName="startDateTime"></nz-date-picker>
+      <nz-form-explain>
+          <ng-container *ngIf="!isValidDate">
+            Por favor, escriba una fecha valida
+          </ng-container>
+        </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha final</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-date-picker formControlName="endDateTime"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="status" nz-row>
+    <nz-dropdown>
+      <a nz-dropdown>
+        Nivel
+        <i class="anticon anticon-down"></i>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let level of levels" (click)=onSelect(level)>
+          <a>{{level}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      <button nz-button (click)="resetForm($event)">Reset</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

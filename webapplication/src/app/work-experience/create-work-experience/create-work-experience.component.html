@@ -1,0 +1,82 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Empresa</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="company" placeholder="Escribe algo...">
+        <nz-form-explain *ngIf="validateForm.get('company').dirty && validateForm.get('company').errors || validateForm.get('company').pending ">
+          <ng-container *ngIf="validateForm.get('company').hasError('required')">
+            Por favor, escriba la empresa
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('company').hasError('duplicated')">
+            La empresa es redundante
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('company').pending">
+            Validando...
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Posicion ocupada</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="occupiedPosition" placeholder="Escribe algo...">
+        <nz-form-explain *ngIf="validateForm.get('occupiedPosition').dirty && validateForm.get('occupiedPosition').errors || validateForm.get('occupiedPosition').pending ">
+          <ng-container *ngIf="validateForm.get('occupiedPosition').hasError('required')">
+            Por favor, escriba la posicion ocupada
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('occupiedPosition').hasError('duplicated')">
+            La posicion ocupada es redundante
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('occupiedPosition').pending">
+            Validando...
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha inicial</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-date-picker formControlName="dateFrom"></nz-date-picker>
+        <nz-form-explain>
+            <ng-container *ngIf="!isValidDate">
+              Por favor, escriba una fecha valida
+            </ng-container>
+          </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha final</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-date-picker formControlName="dateTo"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Salario</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+          <input nz-input type="number" formControlName="salary" placeholder="Escribe algo...">
+          <nz-form-explain *ngIf="validateForm.get('salary').dirty && validateForm.get('salary').errors || validateForm.get('salary').pending ">
+            <ng-container *ngIf="validateForm.get('salary').hasError('required')">
+              Por favor, escriba el salario
+            </ng-container>
+            <ng-container *ngIf="validateForm.get('salary').hasError('duplicated')">
+              El salario es redundante
+            </ng-container>
+            <ng-container *ngIf="validateForm.get('salary').pending">
+              Validando...
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+        <button nz-button (click)="resetForm($event)">Reset</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>

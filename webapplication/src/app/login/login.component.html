@@ -1,0 +1,63 @@
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('assets/images/wallpaper.jpg');">
+    <div class="wrap-login100 p-t-30 p-b-50">
+      <span class="login100-form-title p-b-41">
+        CONTABILIDAD
+      </span>
+      <nz-tabset style="background-color: #fafafa; padding: 10px;">
+        <nz-tab nzTitle="Cuentas de entrada">
+            <!-- <button nz-button nzType="primary" class="pull-right" (click)="setCreateAccountingEntry(true)">Agregar</button> -->
+            <button nz-button [nzType]="'primary'" (click)="setCreateAccountingEntry(true)"><span>Agregar</span></button>
+          <nz-table #basicTable  [nzLoading]="auxiliaryAccounts.length === 0" [nzData]="accountingEntries">
+            <thead>
+              <tr>
+                <th>Descripcion</th>
+                <th>Modulo</th>
+                <th>Cuenta</th>
+                <th>Tipo de movimiento</th>
+                <th>Fecha de creacion</th>
+                <th>Periodo</th>
+                <th>Monto</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.description}}</td>
+                <td>{{getAuxiliaryAccountDescription(data.auxiliaryAccountId)}}</td>
+                <td>{{data.account}}</td>
+                <td>{{data.movementType}}</td>
+                <td>{{data.created | date:'shortDate'}}</td>
+                <td>{{data.period | date:'MMMM y'}}</td>
+                <td>{{data.amount | currency}}</td>
+                <td>
+                  <a (click)="showDeleteConfirm(data.id)">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </nz-tab>
+        <nz-tab nzTitle="Monedas">
+            <nz-table #currencyTable [nzData]="currencyTypes">
+                <thead>
+                  <tr>
+                    <th>Descripcion</th>
+                    <th>Tasa de cambio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of currencyTable.data">
+                    <td>{{data.description}}</td>
+                    <td>{{data.lastExchangeRate | currency}}</td>
+                  </tr>
+                </tbody>
+              </nz-table>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+  </div>
+</div>
+<div id="dropDownSelect1"></div>
+<nz-modal [(nzVisible)]="showCreateAccountingEntry" nzTitle="Creación" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <app-accounting-entry #accountingEntry (created)="handleCancel()"></app-accounting-entry>
+</nz-modal>

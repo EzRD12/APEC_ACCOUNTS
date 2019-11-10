@@ -1,0 +1,10 @@
+<nz-layout class="page-size">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="0" [nzBreakpoint]="'lg'">
+    <div>
+      <app-side-bar></app-side-bar>
+    </div>
+  </nz-sider>
+  <nz-layout>
+      <router-outlet></router-outlet>
+  </nz-layout>
+</nz-layout>

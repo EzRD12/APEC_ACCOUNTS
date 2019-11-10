@@ -1,0 +1,77 @@
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }" [nzMaskClosable]="false"
+  [nzWidth]="720" [nzVisible]="visible" nzTitle="Actualizar" (nzOnClose)="close()">
+  <form nz-form>
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Descripcion</nz-form-label>
+          <nz-form-control>
+            <input #description nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Institucion</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]=institution name="institution">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha inicial</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker [(ngModel)]=startDateTime name="startDateTime"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha final</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker [(ngModel)]=endDateTime name="endDateTime"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="1">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-dropdown>
+              <a nz-dropdown>
+                Nivel
+                <i class="anticon anticon-down"></i>
+              </a>
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item *ngFor="let level of levels" (click)=onSelect(level)>
+                  <a>{{level}}</a>
+                </li>
+              </ul>
+            </nz-dropdown>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+
+  <div class="footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;">
+      <span>Cancelar</span>
+    </button>
+    <button type="button" (click)="updateCompetition(description.value)" class="ant-btn ant-btn-primary">
+      <span>Enviar</span>
+    </button>
+  </div>
+</nz-drawer>

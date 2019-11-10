@@ -1,0 +1,15 @@
+.candidate{
+    margin-left: 132px;
+    margin-top: 10px;
+    font-weight: 620;
+}
+
+.candidate:hover{
+    color:blue;
+}
+
+.invalidUser{
+    margin-left: 132px;
+    margin-top: 10px;
+    color:red;
+}

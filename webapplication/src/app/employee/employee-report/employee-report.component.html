@@ -1,0 +1,50 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+  
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha inicial</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-date-picker formControlName="startDateTime"></nz-date-picker>
+        <nz-form-explain>
+            <ng-container *ngIf="!isValidDate">
+              Por favor, escriba una fecha valida
+            </ng-container>
+          </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha final</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-date-picker formControlName="endDateTime"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+        <button nz-button (click)="resetForm($event)">Reset</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <button nz-button nzType="primary" [hidden]=!isSubmitted (click)="importReport()">Generar reporte</button>
+
+  <nz-table #basicTable [nzData]="displayData" [hidden]=!isSubmitted>
+      <thead>
+        <tr>
+          <th>Fecha de admision</th>
+          <th>Departamento</th>
+          <th>Posicion</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.admissionDate}}</td>
+          <td>{{data.department}}</td>
+          <td>{{data.position | positionName}}</td>
+          <td>{{data.user.name}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+    

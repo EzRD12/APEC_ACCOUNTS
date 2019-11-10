@@ -1,0 +1,69 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Nombre</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="userName" placeholder="Escribe algo...">
+      <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors || validateForm.get('userName').pending ">
+        <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+          Por favor, escriba la descripción
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('userName').hasError('duplicated')">
+          La descripción es redundante
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('userName').pending">
+          Validando...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Salario minimo</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input type="number" nz-input formControlName="minimumSalary">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Salario maximo</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input type="number" nz-input formControlName="maximumSalary">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="status" nz-row>
+    <nz-dropdown>
+      <a nz-dropdown>
+        Estado
+        <i class="anticon anticon-down"></i>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let state of status" (click)=onSelectStatus(state)>
+          <a>{{state}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-form-item>
+
+  <nz-form-item class="status" nz-row>
+    <nz-dropdown>
+      <a nz-dropdown>
+        Nivel de riesgo
+        <i class="anticon anticon-down"></i>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let riskLevel of riskLevels" (click)=onSelectRiskLevel(riskLevel)>
+          <a>{{riskLevel}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      <button nz-button (click)="resetForm($event)">Reset</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
